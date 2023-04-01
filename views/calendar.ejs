@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <% for (let i = 0; i < daysOfWeek.length; i++) { %>
+          <th><%= daysOfWeek[i] %></th>
+        <% } %>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i = 0; i < timeSlots.length; i++) { %>
+        <tr>
+          <td><%= timeSlots[i] %></td>
+          <% for (let j = 0; j < daysOfWeek.length; j++) { %>
+            <td data-time="<%= timeSlots[i] %>" data-day="<%= daysOfWeek[j] %>" class="slot"></td>
+          <% } %>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.slot').click(function() {
+        const time = $(this).attr('data-time');
+        const day = $(this).attr('data-day');
+        $(this).text("");
+      });
+    });
+  </script>
+</body>
+</html>
